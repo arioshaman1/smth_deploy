@@ -1,0 +1,6 @@
+[submodule "my-frontend"]
+	path = my-frontend
+	url = https://github.com/arioshaman1/smth_project_frontend.git
+[submodule "smth_backend"]
+	path = smth_backend
+	url = https://github.com/arioshaman1/smth_project.git
