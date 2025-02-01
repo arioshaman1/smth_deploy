@@ -1,17 +1,4 @@
 services:
-  nginx:
-    image: nginx:stable-alpine
-    ports:
-      - "80:80"
-    volumes:
-        - ./my-frontend/nginx.conf:/etc/nginx/nginx.conf
-    depends_on:
-      - backend
-      - frontend
-      - db
-    networks:
-      - dev
-
   backend:
     build: 
       context: ./smth_backend
@@ -57,7 +44,6 @@ services:
 volumes:
   db_data:
     driver: local
-
 
 networks:
   dev:
