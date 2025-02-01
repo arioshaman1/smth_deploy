@@ -1,25 +1,24 @@
-# Этап сборки фронтенда
+# Build stage
 FROM node:alpine as build
 
 WORKDIR /app
 
-# Копирование файлов package.json и package-lock.json для установки зависимостей
+# Copy package.json files and install dependencies
 COPY package.json /app/package.json
 RUN npm install
 
-# Копирование остального кода и сборка
+# Copy source code and build
 COPY . /app
 RUN npm run build
 
-# Этап с Nginx
+# Nginx stage
 FROM nginx:stable-alpine
 
-# Копирование собранных файлов из первого этапа
-COPY --from=build /app/build /usr/share/nginx/html
-COPY --from=build /app/nginx.conf /etc/nginx/conf.d/default.conf
+# Copy built files from build stage (using correct 'dist' directory)
+COPY --from=build /app/dist /usr/share/nginx/html
+# Copy nginx.conf from the host's root directory
+COPY ../nginx.conf /etc/nginx/conf.d/default.conf
 
-# Использование стандартного порта для Nginx
 EXPOSE 80
 
-# Запуск Nginx
 CMD ["nginx", "-g", "daemon off;"]
