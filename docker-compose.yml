@@ -21,6 +21,8 @@ services:
   backend:
     build: 
       context: ./smth_backend
+    ports:
+      - "8000:8000"
     environment:
       - DB_HOST=db
       - DB_PORT=3306
@@ -35,6 +37,8 @@ services:
   frontend:
     build: 
       context: ./my-frontend
+     ports:
+    - "3000:3000"
     networks:
       - dev
 
@@ -43,8 +47,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root_password
       MYSQL_DATABASE: smth_database
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root_password
+      MYSQL_USER: andrejadajkin
+      MYSQL_PASSWORD: 12345678
     volumes:
       - db_data:/var/lib/mysql
     ports:
