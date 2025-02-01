@@ -24,11 +24,9 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - DB_HOST=db
-      - DB_PORT=3306
-      - DB_NAME=smth_database
-      - DB_USER=andrejadajkin
-      - DB_PASSWORD=12345678
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/smth_database
+      SPRING_DATASOURCE_USERNAME: andrejadajkin
+      SPRING_DATASOURCE_PASSWORD: 12345678
     depends_on:
       - db
     networks:
