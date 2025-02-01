@@ -17,7 +17,7 @@ services:
 
   backend:
     build: 
-      context: .smth_backend
+      context: ./smth_backend
     environment:
       - DB_HOST=localhost
       - DB_PORT=3306
@@ -31,7 +31,7 @@ services:
 
   frontend:
     build: 
-      context: .my-frontend
+      context: ./my-frontend
     networks:
       - dev
 
