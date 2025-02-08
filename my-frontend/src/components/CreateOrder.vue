@@ -21,7 +21,11 @@
 
 <script>
 import axios from 'axios';
-
+const orderData = {
+  client: "John Doe",
+  address: "1234 Main St",
+  data: "asdasdasdasd"
+};
 export default {
   data() {
     return {
