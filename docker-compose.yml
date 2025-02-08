@@ -24,6 +24,7 @@ services:
   db:
     image: mysql:8
     environment:
+      MYSQL_ROOT_PASSWORD: 12345678
       MYSQL_DATABASE: smth_database
       MYSQL_USER: andrejadajkin
       MYSQL_PASSWORD: 12345678
