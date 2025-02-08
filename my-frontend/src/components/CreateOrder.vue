@@ -37,7 +37,7 @@ export default {
   methods: {
     async createOrder() {
       try {
-        const response = await axios.post('http://217.196.107.39:8080/orders', this.order);
+        const response = await axios.post('http://217.196.107.39/api/orders', this.order);
 
         // Очищаем форму
         this.order = {
