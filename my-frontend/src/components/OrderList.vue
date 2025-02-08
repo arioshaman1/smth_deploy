@@ -31,11 +31,11 @@ export default {
   },
   methods: {
     async fetchOrders() {
-      const response = await axios.get('http://localhost:8080/orders');
+      const response = await axios.get('http://217.196.107.39:8080/orders');
       this.orders = response.data;
     },
     async deleteOrder(id) {
-      await axios.delete(`http://localhost:8080/orders/${id}`);
+      await axios.delete(`http://217.196.107.39:8080/orders/${id}`);
       this.fetchOrders();
     },
   },

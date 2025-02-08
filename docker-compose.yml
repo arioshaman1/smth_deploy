@@ -3,7 +3,7 @@ services:
     build: 
       context: ./smth_backend
     ports:
-      - "8000:8000"
+      - "8080:8080"
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/smth_database
       SPRING_DATASOURCE_USERNAME: andrejadajkin
