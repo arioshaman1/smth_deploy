@@ -41,7 +41,7 @@ export default {
   methods: {
     async createOrder() {
       try {
-        const response = await axios.post("http://217.196.107.39/api/orders", orderData)
+        const response = await axios.post("http://217.196.107.39/api/orders")
   .then(response => console.log("Заказ создан:", response.data))
   .catch(error => console.error("Ошибка при создании заказа:", error.toJSON()));
 
