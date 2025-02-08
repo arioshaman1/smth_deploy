@@ -11,7 +11,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS})
 @RestController
-@RequestMapping("/orders")
+@RequestMapping("api//orders")
 public class Controller {
 
     @Autowired
