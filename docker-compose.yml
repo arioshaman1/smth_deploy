@@ -9,8 +9,7 @@ services:
       SPRING_DATASOURCE_USERNAME: andrejadajkin
       SPRING_DATASOURCE_PASSWORD: 12345678
     depends_on:
-      db:
-        condition: service_healthy
+      - db
     networks:
       - dev
 
