@@ -1,6 +1,5 @@
 package com.example.smth.Controller;
 
-import com.example.smth.entities.ApiResponse;
 import com.example.smth.entities.OrderEntity;
 import com.example.smth.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,32 +16,31 @@ public class Controller {
 
     @Autowired
     private final OrderService orderService;
+
     public Controller(OrderService orderService) {
         this.orderService = orderService;
     }
+
     @GetMapping("/{id}")
     public ResponseEntity<OrderEntity> getOrderById(@PathVariable("id") Long id) {
         OrderEntity order = orderService.getOrderById(id);
         return new ResponseEntity<>(order, HttpStatus.OK);
     }
+
     @GetMapping
     public List<OrderEntity> findAllOrders() {
-            return orderService.getAllOrders();
+        return orderService.getAllOrders();
     }
+
     @PostMapping
-    public OrderEntity createOrder( @RequestBody OrderEntity order) {
-        return orderService.create(order);
-
+    public ResponseEntity<OrderEntity> createOrder(@RequestBody OrderEntity order) {
+        OrderEntity createdOrder = orderService.create(order);
+        return new ResponseEntity<>(createdOrder, HttpStatus.CREATED);
     }
+
     @DeleteMapping("/{id}")
-    public OrderEntity deleteOrder(@PathVariable Long id) {
-         orderService.deleteOrderById(id);
-         return null;
+    public ResponseEntity<Void> deleteOrder(@PathVariable Long id) {
+        orderService.deleteOrderById(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
-
 }
-
-
-
-
