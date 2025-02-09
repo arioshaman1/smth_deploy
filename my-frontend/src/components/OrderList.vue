@@ -1,14 +1,12 @@
 <template>
-  <div>
+  <div class="orders-container">
     <h2>Список заказов</h2>
     <ul>
-      <li v-for="order in orders" :key="order.id">
-        {{ order.address }} - {{ order.client }} - {{ order.date }}
+      <li v-for="order in orders" :key="order.id" class="order-item">
+        <span>{{ order.address }} - {{ order.client }} - {{ order.date }}</span>
         <button @click="deleteOrder(order.id)">Удалить</button>
       </li>
     </ul>
-
-    <!-- Вставляем дочерний компонент для создания заказа -->
     <CreateOrder @order-created="fetchOrders" />
   </div>
 </template>
@@ -16,43 +14,64 @@
 <script>
 import axios from 'axios';
 import CreateOrder from './CreateOrder.vue';
-
 export default {
-  components: {
-    CreateOrder,
-  },
+  components: { CreateOrder },
   data() {
-    return {
-      orders: [], // Список заказов
-      error: null, // Сообщение об ошибке
-    };
+    return { orders: [], error: null };
   },
   created() {
-    this.fetchOrders(); // Загружаем заказы при создании компонента
+    this.fetchOrders();
   },
   methods: {
-    // Метод для загрузки заказов
     async fetchOrders() {
       try {
         const response = await axios.get('http://217.196.107.39/api/orders');
-        this.orders = response.data; // Обновляем список заказов
-        this.error = null; // Сбрасываем ошибку
+        this.orders = response.data;
       } catch (error) {
-        console.error('Ошибка при загрузке заказов:', error);
-        this.error = 'Не удалось загрузить заказы. Попробуйте снова.';
+        this.error = 'Ошибка загрузки';
       }
     },
-    // Метод для удаления заказа
     async deleteOrder(id) {
       try {
         await axios.delete(`http://217.196.107.39/api/orders/${id}`);
-        this.fetchOrders(); // Обновляем список после удаления
-        this.error = null; // Сбрасываем ошибку
+        this.fetchOrders();
       } catch (error) {
-        console.error('Ошибка при удалении заказа:', error);
-        this.error = 'Не удалось удалить заказ. Попробуйте снова.';
+        this.error = 'Ошибка удаления';
       }
     },
   },
 };
 </script>
+
+<style scoped>
+.orders-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  margin: 5px 0;
+  background: #f4f4f4;
+  border-radius: 6px;
+}
+
+button {
+  background: #e74c3c;
+  color: white;
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #c0392b;
+}
+</style>
