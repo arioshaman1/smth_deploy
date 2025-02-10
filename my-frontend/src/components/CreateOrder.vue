@@ -36,7 +36,7 @@ export default {
   methods: {
     async createOrder() {
       try {
-        await axios.post("http://217.196.107.39/api/orders", this.order, {
+        await axios.post("arioshaman.ru/api/orders", this.order, {
           headers: { "Content-Type": "application/json" },
         });
         this.order = { client: "", address: "", date: "" };

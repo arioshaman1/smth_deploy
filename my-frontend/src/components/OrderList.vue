@@ -25,7 +25,7 @@ export default {
   methods: {
     async fetchOrders() {
       try {
-        const response = await axios.get('http://217.196.107.39/api/orders');
+        const response = await axios.get('arioshaman.ru/api/orders');
         this.orders = response.data;
       } catch (error) {
         this.error = 'Ошибка загрузки';
@@ -33,7 +33,7 @@ export default {
     },
     async deleteOrder(id) {
       try {
-        await axios.delete(`http://217.196.107.39/api/orders/${id}`);
+        await axios.delete(`arioshaman.ru/api/orders/${id}`);
         this.fetchOrders();
       } catch (error) {
         this.error = 'Ошибка удаления';
